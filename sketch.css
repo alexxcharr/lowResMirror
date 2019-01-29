@@ -1,0 +1,10 @@
+body{
+    background: #000;
+}
+
+#canvasPos {
+    position:absolute;
+    margin-top: 5%;
+    margin-left: 20%;
+
+}
