@@ -1,7 +1,6 @@
 var video;
 var vScale = 8;
 var angle = 0;
-var arr = [[]];
 var canvas;
 
 function setup() {
@@ -10,43 +9,34 @@ function setup() {
     background(0);
     pixelDensity(1);
     video =  createCapture(VIDEO);
-    video.size(width/vScale, height/vScale);
+    video.size(width/vScale, height/vScale); //making video very small low-res
     video.hide();
 }
 
 function draw() {
     image(video, 0, 0);
-    background(0);
-    video.loadPixels();
-    loadPixels();
+    // background(0);
+    background(0, 33, 153);
+    video.loadPixels(); //video pixels
+    loadPixels(); //canvas pixels
     var offset = 0;
     //go through every pixel
     for (var y = 0; y < video.height; y++) {
         for(var x = 0; x < video.width; x++) {
             //js every pixel has 4 spots in array (x + y * width) * 4
-            var index = (video.width - x + 1 + y * video.width) * 4;//mirror n
-            var r = video.pixels[index+0];
+            var index = (video.width - x + 1 + y * video.width) * 4;//mirror
+            var r = video.pixels[index+0]; //looking at every pixel
             var g = video.pixels[index+1];
             var b = video.pixels[index+2];
-            // find avarage to make grscl
-            var bright = (r+g+b)/3;
+            var bright = (r+g+b)/3; // find avarage to make grscl
             var w = map(bright, 0, 255, 0, vScale);//map bright to size
-            // if(x%2 == 0){
-            //     offset += pi;
-            // }
-            // else {
-            //     offset -= pi;
-            // }
-            var s = map(sin(angle + offset), -1, 1, x - 2, x + 2);
+            var s = map(sin(angle + offset), -1, 1, x - 2, x + 2); //map sine to x loc
             noStroke();
             fill(255);
             rectMode(CENTER);
-            rect((s) * vScale, (y) * vScale, w, w);
+            rect((s) * vScale, (y) * vScale, w, w); //scaling up to canvas size
             offset += PI;
-
         }
-    //     angle += 0.05;
     }
     angle += 0.05;
-
 }

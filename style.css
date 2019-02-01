@@ -1,10 +1,11 @@
 body{
-    background: #000;
+    /* background: #000; */
+    background: #002199;
 }
 
 #canvasPos {
-    position:absolute;
-    margin-top: 5%;
-    margin-left: 20%;
-
+    position:relative;
+    top:0%
+    left: 8%;
+    transform: translate(8%, 0%);
 }
