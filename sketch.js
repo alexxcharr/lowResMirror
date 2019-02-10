@@ -1,10 +1,10 @@
 var video;
-var vScale = 8;
+var vScale = 6;
 var angle = 0;
 var canvas;
 
 function setup() {
-    canvas = createCanvas(1080, 720);
+    canvas = createCanvas(480, 720);
     canvas.parent('canvasPos');
     background(0);
     pixelDensity(1);
@@ -30,13 +30,15 @@ function draw() {
             var b = video.pixels[index+2];
             var bright = (r+g+b)/3; // find avarage to make grscl
             var w = map(bright, 0, 255, 0, vScale);//map bright to size
-            var s = map(sin(angle + offset), -1, 1, x - 2, x + 2); //map sine to x loc
+            var s = sin(angle + offset);
+            var m = map(s, -1, 1, x-2, x+2); //map sine to x loc
             noStroke();
             fill(255);
             rectMode(CENTER);
-            rect((s) * vScale, (y) * vScale, w, w); //scaling up to canvas size
+            rect((m) * vScale, (y) * vScale, w, w); //scaling up to canvas size
+            // rect((-m) * vScale, (y) * vScale, w, w); //scaling up to canvas size
             offset += PI;
         }
     }
-    angle += 0.05;
-}
+    angle += 0.025;
+ }

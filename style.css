@@ -4,8 +4,12 @@ body{
 }
 
 #canvasPos {
-    position:relative;
-    top:0%
-    left: 8%;
-    transform: translate(8%, 0%);
+    margin: 6%;
+    display: flex;
+
+    /* This centers our sketch horizontally. */
+    justify-content: center;
+
+    /* This centers our sketch vertically. */
+    align-items: center;
 }
